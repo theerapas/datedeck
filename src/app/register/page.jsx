@@ -1,26 +1,35 @@
+// pages/register.js
+
 "use client";
-// pages/login.js
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
-    // In a real application, you would send these credentials to your backend for authentication
-    console.log('Login Attempt:', { email, password });
-    // Placeholder for actual login logic - for MVP, just console log
-    alert('Login functionality is a placeholder for MVP. Check console for submitted data.');
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match. Please re-enter.");
+      return;
+    }
+
+    // In a real application, you would send registration data to your backend
+    console.log('Registration Attempt:', { email, password });
+    // Placeholder for actual registration logic - for MVP, just console log
+    alert('Registration functionality is a placeholder for MVP. Check console for submitted data.');
+    // After successful registration in a real app, you might redirect to login or dashboard
   };
 
   return (
     <>
       <Head>
-        <title>Relationship Insights - Login</title>
-        <meta name="description" content="Login to Relationship Insights and start evaluating your relationships." />
+        <title>Relationship Insights - Register</title>
+        <meta name="description" content="Register for Relationship Insights and start evaluating your relationships." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -28,12 +37,12 @@ export default function LoginPage() {
         {/* Core Content Container (Mobile-First Design - Centered) */}
         <div className="core-container bg-white shadow-md rounded-lg overflow-hidden w-full max-w-md mx-auto my-auto">
           <div className="px-8 py-12 sm:px-10">
-            {/* Login Page Content */}
+            {/* Register Page Content */}
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-              Login to Your Account
+              Create a New Account
             </h1>
 
-            <form onSubmit={handleLogin} className="space-y-6">
+            <form onSubmit={handleRegister} className="space-y-6">
               <div>
                 <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
                   Email
@@ -56,9 +65,24 @@ export default function LoginPage() {
                   type="password"
                   id="password"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  placeholder="Your Password"
+                  placeholder="Choose a Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength="6" // Example: Require password of at least 6 characters
+                />
+              </div>
+              <div>
+                <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-bold mb-2">
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Confirm Your Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                 />
               </div>
@@ -67,22 +91,15 @@ export default function LoginPage() {
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
                 >
-                  Log In
+                  Register
                 </button>
-                <Link href="/register" legacyBehavior>
+                <Link href="/login" legacyBehavior>
                   <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Register
+                    Already have an account? Login
                   </a>
                 </Link>
               </div>
             </form>
-
-            {/* Optional: Add "Forgot Password?" Link below the form if needed for full functionality */}
-            {/* <div className="mt-4 text-center">
-              <a href="#" className="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800">
-                Forgot Password?
-              </a>
-            </div> */}
           </div>
         </div>
       </div>
