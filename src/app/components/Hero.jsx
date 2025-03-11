@@ -29,7 +29,9 @@ const Hero = () => {
         >
           View My Project
         </a>
+        
       </div>
+
     </div>
   );
 };
