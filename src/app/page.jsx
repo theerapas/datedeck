@@ -8,7 +8,6 @@ export default function Home() {
     <div className="items-center justify-center">
       <Navbar />
       <Hero />
-      <Test  />
     </div>
   );
 }
