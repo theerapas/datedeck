@@ -1,37 +1,49 @@
-import React from "react";
+// pages/index.js
+import Head from "next/head";
+import Link from "next/link";
 
-const Hero = () => {
+export default function HomePage() {
   return (
-    <div
-      className="bg-gray-900 text-white bg-no-repeat bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('https://w.wallhaven.cc/full/v9/wallhaven-v9m99l.png') ",
-      }}
-    >
-      <div
-        id="home"
-        className="min-h-screen flex flex-col justify-center items-center text-center px-6"
-      >
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold">
-            Hi, I'm <span className="text-light-blue-300">Noptanadon</span>
-          </h1>
-          <p className="mt-4 text-lg md:text-xl">
-            Chula Engineering student. Christmas is coming! The hottest gift
-            is my new book, “SAVE AMERICA.” No other book captures our Movement,
-            our Campaign, and our FUTURE. Get your copy today!
-          </p>
-        </div>
-        <a
-          href="#projects"
-          className="mt-6 px-6 py-3 font-bold bg-blue-500 text-white rounded-lg hover:bg-light-blue-600 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500"
-        >
-          View My Project
-        </a>
-      </div>
-    </div>
-  );
-};
+    <>
+      <Head>
+        <title>Relationship Insights - Homepage</title>
+        <meta
+          name="description"
+          content="Evaluate your relationship potential based on past relationship data."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-export default Hero;
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+        {/* Core Content Container */}
+        <div className="flex flex-col items-center justify-center bg-pink-200 w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
+          {/* Heart Icon with 'E' - This can be an emoji or an actual image */}
+          <div className="text-5xl mb-4">❤️</div>
+          <div className="text-3xl font-bold text-gray-800"></div>
+
+          {/* Main Title */}
+          <h1 className="text-xl font-bold text-gray-800 mt-2">
+            GIRLFRIEND MANAGER
+          </h1>
+
+          {/* Slogan */}
+          <p className="text-gray-700 italic mt-4 px-6">
+            " The right person at the uncertain time "
+          </p>
+
+          {/* Sign up / Log in Button */}
+          <div className="mt-10">
+            <Link href="/login">
+              <button
+                className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded-full"
+                href="/login"
+              >
+                Sign up / Log in
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
