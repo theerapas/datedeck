@@ -1,91 +1,56 @@
-"use client";
-// pages/login.js
+import React from 'react';
+import { FaApple, FaGoogle, FaFacebook } from 'react-icons/fa';
 import Head from 'next/head';
-import Link from 'next/link';
-import { useState } from 'react';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    // In a real application, you would send these credentials to your backend for authentication
-    console.log('Login Attempt:', { email, password });
-    // Placeholder for actual login logic - for MVP, just console log
-    alert('Login functionality is a placeholder for MVP. Check console for submitted data.');
-  };
-
+const page = () => {
   return (
     <>
       <Head>
-        <title>Relationship Insights - Login</title>
-        <meta name="description" content="Login to Relationship Insights and start evaluating your relationships." />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Log in</title>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </Head>
+      <div className="flex flex-col items-center justify-center bg-pink-200 w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
+        {/* Log in title */}
+        <h1 className="text-4xl font-bold text-gray-800 mb-15" style={{ fontFamily: "'Press Start 2P', cursive" }}>Log in</h1>
 
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        {/* Core Content Container (Mobile-First Design - Centered) */}
-        <div className="core-container bg-white shadow-md rounded-lg overflow-hidden w-full max-w-md mx-auto my-auto">
-          <div className="px-8 py-12 sm:px-10">
-            {/* Login Page Content */}
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-              Login to Your Account
-            </h1>
+        {/* Social Login Buttons */}
+        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-3 px-4">
+          <FaApple className="mr-2 text-black" size={30}/>
+          <span className="flex-grow text-center">Continue with Apple</span>
+        </button>
 
-            <form onSubmit={handleLogin} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  placeholder="Your Email Address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  placeholder="Your Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                >
-                  Log In
-                </button>
-                <Link href="/register" legacyBehavior>
-                  <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Register
-                  </a>
-                </Link>
-              </div>
-            </form>
+        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-3 px-4">
+          <FaGoogle className="mr-2 text-red-500" size={28} />
+          <span className="flex-grow text-center">Continue with Google</span>
+        </button>
 
-            {/* Optional: Add "Forgot Password?" Link below the form if needed for full functionality */}
-            {/* <div className="mt-4 text-center">
-              <a href="#" className="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800">
-                Forgot Password?
-              </a>
-            </div> */}
-          </div>
+        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-6 px-4">
+          <FaFacebook className="mr-2 text-blue-600" size={30}/>
+          <span className="flex-grow text-center">Continue with Facebook</span>
+        </button>
+
+        {/* Email & Password Fields */}
+        <div className="w-4/5 text-left">
+          <label className="block text-sm font-medium text-gray-700 bg-">Email</label>
+          <input type="email" placeholder="Email" className="w-full px-4 py-2  rounded-md text-gray-800 mb-4 bg-white" />
+
+          <label className="block text-sm font-medium text-gray-700">Password</label>
+          <input type="password" placeholder="Password" className="w-full px-4 py-2  rounded-md text-gray-800 mb-6 bg-white" />
         </div>
+
+        {/* Log in Button */}
+        <button className="w-4/5 bg-gray-800 text-white py-2 rounded-full text-lg font-bold mb-4">
+          Log in
+        </button>
+
+        {/* Links */}
+        <p className="text-sm text-gray-700 mb-2 cursor-pointer">Forgot your password?</p>
+        <p className="text-sm text-gray-700">
+          Don’t have an account? <span className="text-blue-500 cursor-pointer"><a href="/signUp">Sign up</a></span>
+        </p>
       </div>
     </>
   );
-}
+};
+
+export default page;
