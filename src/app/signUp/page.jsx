@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaApple, FaGoogle, FaFacebook } from 'react-icons/fa';
 import Head from 'next/head';
+import Loading from '../components/Loading';
 
 const page = () => {
   return (
@@ -9,7 +10,10 @@ const page = () => {
         <title>Sign up</title>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </Head>
-      <div className="flex flex-col items-center justify-center bg-pink-200 w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
+
+      
+
+      <div className="flex flex-col items-center justify-center bg-gradient-to-b from-pink-100 to-purple-200 w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
         {/* Sign up title */}
         <h1 className="text-4xl font-bold text-gray-800 mb-15" style={{ fontFamily: "'Press Start 2P', cursive" }}>Sign up</h1>
 
