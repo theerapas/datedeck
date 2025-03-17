@@ -5,7 +5,15 @@ import Head from 'next/head';
 import Loading from '../components/Loading';
 const Page = () => {
   const [isClient, setIsClient] = useState(false);
-
+  const [email, setIEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  }
   useEffect(() => {
     setIsClient(true);
   }, []);

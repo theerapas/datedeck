@@ -1,8 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
+import { auth, googleProvider } from "../../config/firebase";
+import { useState } from "react";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 export default function SignUpPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // console.log(auth?.currentUser?.email);
+  const signUp = async (event) => {
+    event.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const signUpwithGoogle = async (event) => {
+    event.preventDefault();
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white h-full">
       <div className="w-full max-w-md p-8 bg-[#572649] h-full min-h-screen justify-center flex flex-col">
@@ -28,6 +56,7 @@ export default function SignUpPage() {
               placeholder="Email"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
+              onChange = {(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -37,6 +66,7 @@ export default function SignUpPage() {
               placeholder="Password"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
+              onChange = {(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -57,6 +87,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
+            onClick={signUp}
           >
             Sign up
           </button>
@@ -69,9 +100,10 @@ export default function SignUpPage() {
             <span className="flex-grow text-center">Continue with Apple</span>
           </button>
 
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4" onClick={signUpwithGoogle}>
             <FaGoogle className="text-red-500" size={24} />
             <span className="flex-grow text-center">Continue with Google</span>
+            
           </button>
 
           <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
