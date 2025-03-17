@@ -6,15 +6,18 @@ import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
 import { auth, googleProvider } from "../../config/firebase";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log(auth?.currentUser?.email);
+  const router = useRouter();
+
   const signUp = async (event) => {
     event.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      router.push("/accSetting");
     } catch (error) {
       console.error(error);
     }
@@ -24,12 +27,11 @@ export default function SignUpPage() {
     event.preventDefault();
     try {
       await signInWithPopup(auth, googleProvider);
+      router.push("/accSetting");
     } catch (error) {
       console.error(error);
     }
-  }
-
-
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white h-full">
@@ -56,7 +58,7 @@ export default function SignUpPage() {
               placeholder="Email"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
-              onChange = {(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -66,12 +68,12 @@ export default function SignUpPage() {
               placeholder="Password"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
-              onChange = {(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           {/* Terms of Service Checkbox */}
-          <div className="flex items-center space-x-2 text-white">
+          <div className="flex items-center space-x-2 text-white cursor-pointer">
             <input
               type="checkbox"
               id="terms"
@@ -86,7 +88,7 @@ export default function SignUpPage() {
           {/* Sign Up Button */}
           <button
             type="submit"
-            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
+            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4 cursor-pointer"
             onClick={signUp}
           >
             Sign up
@@ -95,18 +97,20 @@ export default function SignUpPage() {
 
         {/* Social Login Buttons */}
         <div className="space-y-4">
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4 cursor-pointer">
             <FaApple className="text-black" size={24} />
             <span className="flex-grow text-center">Continue with Apple</span>
           </button>
 
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4" onClick={signUpwithGoogle}>
+          <button
+            className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4 cursor-pointer"
+            onClick={signUpwithGoogle}
+          >
             <FaGoogle className="text-red-500" size={24} />
             <span className="flex-grow text-center">Continue with Google</span>
-            
           </button>
 
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4 cursor-pointer">
             <FaFacebook className="text-blue-600" size={24} />
             <span className="flex-grow text-center">
               Continue with Facebook

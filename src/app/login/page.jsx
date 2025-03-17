@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { FaApple, FaGoogle, FaFacebook } from 'react-icons/fa';
 import Head from 'next/head';
 import Loading from '../components/Loading';
+import { auth, googleProvider } from "../../config/firebase";
+// import { useState } from "react";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useRouter  } from "next/navigation";
+
+
 const Page = () => {
   const [isClient, setIsClient] = useState(false);
   const [email, setIEmail] = useState("");
