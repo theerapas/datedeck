@@ -19,7 +19,7 @@ const Loading = () => {
     const timeout = setTimeout(() => {
       setLoading(false);
       clearInterval(interval);
-    }, 1000); // Simulate loading state
+    }, 100); // Simulate loading state
 
     return () => {
       clearTimeout(timeout);
