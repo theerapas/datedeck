@@ -1,8 +1,18 @@
+"use client";
 import Link from "next/link";
-import Image from "next/image";
+import { useRouter } from "next/router";
 import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
 
 export default function SignUpPage() {
+  const router = useRouter();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform form submission logic here (e.g., API call)
+    // After successful submission, redirect to the accSetting page
+    router.push("/accSetting");
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white h-full">
       <div className="w-full max-w-md p-8 bg-[#572649] h-full min-h-screen justify-center flex flex-col">
@@ -12,7 +22,7 @@ export default function SignUpPage() {
         </h1>
 
         {/* Sign Up Form */}
-        <form className="space-y-4 mb-6">
+        <form className="space-y-4 mb-6" onSubmit={handleSubmit}>
           <div>
             <input
               type="text"
@@ -56,7 +66,7 @@ export default function SignUpPage() {
           {/* Sign Up Button */}
           <button
             type="submit"
-            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
+            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4 cursor-pointer"
           >
             Sign up
           </button>

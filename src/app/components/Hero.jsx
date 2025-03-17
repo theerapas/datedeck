@@ -9,7 +9,7 @@ export default function Hero() {
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </Head>
-      <div className="flex flex-col items-center justify-center bg-[#4A2B4D] w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
+      <div className="flex flex-col items-center justify-center bg-[#572649] w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
         <div className="w-4/5 space-y-6">
           {/* Main Title */}
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Press Start 2P', cursive" }}>
