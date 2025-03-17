@@ -69,7 +69,7 @@ const Page = () => {
         </p>
         <p className="text-white">
           Don't have an account?{' '}
-          <a href="/signup" className="font-medium hover:underline">Sign up</a>
+          <a href="/signUp" className="font-medium hover:underline">Sign up</a>
         </p>
       </div>
     </>
