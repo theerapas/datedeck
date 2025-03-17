@@ -9,6 +9,7 @@ const Navbar = () => {
       <a href="/dashboard">Dashboard</a>
       <a href="/account">Account</a>
       <a href="/register">Register</a>
+      <a href="/accSetting">Account Settings</a>
     </div>
   );
 };

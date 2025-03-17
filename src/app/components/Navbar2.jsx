@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <>
       {/* Hamburger Menu Button */}
-      <div className="fixed top-0 left-0 w-full max-w-md bg-[#4A2B4D] h-16 flex items-center px-4 z-20">
+      <div className="top-0 left-0 w-full max-w-md bg-[#4A2B4D] h-16 flex items-center px-4 z-60">
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-white hover:opacity-80 transition-opacity"
@@ -25,7 +25,7 @@ export default function Navbar() {
 
       {/* Sliding Navigation Menu */}
       <div 
-        className={`fixed top-16 left-0 w-full max-w-md bg-[#4A2B4D] transform transition-transform duration-300 ease-in-out z-10 border-t border-[#5d375f]
+        className={` fixed top-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#4A2B4D] transform transition-transform duration-300 ease-in-out z-50 border-t border-[#5d375f] 
           ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
       >
         <nav className="py-4">
@@ -42,8 +42,7 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Spacer to prevent content from hiding under the navbar */}
-      <div className="h-16" />
+      {/* No Spacer Needed */}
     </>
   );
 }
