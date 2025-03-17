@@ -56,6 +56,7 @@ const Page = () => {
             type="password" 
             placeholder="Password" 
             className="w-full px-4 py-3 rounded-lg bg-white mb-6" 
+            onChange = {(e) => setPassword(e.target.value)}
           />
         </div>
 
