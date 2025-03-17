@@ -1,16 +1,19 @@
-"use client";
+"use client"; // Add this line at the top
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
 
 export default function SignUpPage() {
-  const router = useRouter();
+  const router = useRouter(); // Initialize router
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform form submission logic here (e.g., API call)
-    // After successful submission, redirect to the accSetting page
-    router.push("/accSetting");
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Simulate form submission and redirect
+    setTimeout(() => {
+      router.push("/accSetting"); // Redirect to the success page
+    }, 500); // Delay for a better UX
   };
 
   return (
@@ -52,21 +55,14 @@ export default function SignUpPage() {
 
           {/* Terms of Service Checkbox */}
           <div className="flex items-center space-x-2 text-white">
-            <input
-              type="checkbox"
-              id="terms"
-              className="w-4 h-4 rounded"
-              required
-            />
-            <label htmlFor="terms" className="text-sm">
-              agree all Term of Services
-            </label>
+            <input type="checkbox" id="terms" className="w-4 h-4 rounded" required />
+            <label htmlFor="terms" className="text-sm">I agree to all Terms of Services</label>
           </div>
 
           {/* Sign Up Button */}
           <button
             type="submit"
-            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4 cursor-pointer"
+            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
           >
             Sign up
           </button>
@@ -86,19 +82,14 @@ export default function SignUpPage() {
 
           <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
             <FaFacebook className="text-blue-600" size={24} />
-            <span className="flex-grow text-center">
-              Continue with Facebook
-            </span>
+            <span className="flex-grow text-center">Continue with Facebook</span>
           </button>
         </div>
 
         {/* Login Link */}
         <div className="text-center mt-6 text-white">
           Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-white font-medium hover:underline"
-          >
+          <Link href="/login" className="text-white font-medium hover:underline">
             Log in
           </Link>
         </div>

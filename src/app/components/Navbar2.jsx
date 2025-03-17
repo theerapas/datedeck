@@ -9,6 +9,8 @@ export default function Navbar() {
     { href: '/dashboard', label: 'Dashboard' },
     { href: '/girlfriend-deck', label: 'Girlfriend Deck' },
     { href: '/comparison-mode', label: 'Comparison Mode' },
+    { href: '/profile', label: 'Profile' },
+    { href: '/settings', label: 'Settings' },
   ];
 
   return (

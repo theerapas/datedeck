@@ -1,10 +1,20 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { FaApple, FaGoogle, FaFacebook } from 'react-icons/fa';
-import Head from 'next/head';
-import Loading from '../components/Loading';
+import React, { useEffect, useState } from "react";
+import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
+import Head from "next/head";
+import Loading from "../components/Loading";
 const Page = () => {
   const [isClient, setIsClient] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return;
+    }
+    console.log("Logging in with", email, password);
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -14,9 +24,12 @@ const Page = () => {
     <>
       <Head>
         <title>Log in</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <Loading/>
+      <Loading />
       <div className="flex flex-col items-center justify-center bg-[#572649] w-full max-w-md mx-auto my-auto h-full min-h-screen text-center p-8">
         {/* Log in title */}
         <h1 className="text-4xl font-medium text-white mb-8">Login</h1>
@@ -31,12 +44,16 @@ const Page = () => {
 
             <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
               <FaGoogle className="text-red-500" size={24} />
-              <span className="flex-grow text-center">Continue with Google</span>
+              <span className="flex-grow text-center">
+                Continue with Google
+              </span>
             </button>
 
             <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
               <FaFacebook className="text-blue-600" size={24} />
-              <span className="flex-grow text-center">Continue with Facebook</span>
+              <span className="flex-grow text-center">
+                Continue with Facebook
+              </span>
             </button>
           </>
         )}
@@ -44,22 +61,29 @@ const Page = () => {
         {/* Email & Password Fields */}
         <div className="w-full text-left">
           <label className="block text-white mb-2 text-sm">Email</label>
-          <input 
-            type="email" 
-            placeholder="Email" 
-            className="w-full px-4 py-3 rounded-lg bg-white mb-4" 
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            className="w-full px-4 py-3 rounded-lg bg-white mb-4"
           />
 
           <label className="block text-white mb-2 text-sm">password</label>
-          <input 
-            type="password" 
-            placeholder="Password" 
-            className="w-full px-4 py-3 rounded-lg bg-white mb-6" 
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="w-full px-4 py-3 rounded-lg bg-white mb-6"
           />
         </div>
 
         {/* Log in Button */}
-        <button className="w-full bg-[#8B4B76] text-white py-3 rounded-full mb-4 hover:bg-[#7a4267] transition-colors">
+        <button
+          onClick={handleLogin}
+          className="w-full bg-[#8B4B76] text-white py-3 rounded-full mb-4 hover:bg-[#7a4267] transition-colors"
+        >
           Log in
         </button>
 
@@ -68,8 +92,10 @@ const Page = () => {
           Forget your password?
         </p>
         <p className="text-white">
-          Don't have an account?{' '}
-          <a href="/signUp" className="font-medium hover:underline">Sign up</a>
+          Don't have an account?{" "}
+          <a href="/signUp" className="font-medium hover:underline">
+            Sign up
+          </a>
         </p>
       </div>
     </>
