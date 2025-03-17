@@ -1,80 +1,50 @@
-import Head from "next/head";
+import React from 'react';
 import Link from "next/link";
-import Loading from "./Loading"; // Import the Loading component
+import Head from "next/head";
 
-export default function HomePage() {
+
+export default function Hero() {
   return (
     <>
       <Head>
-        <title>Relationship Insights - Homepage</title>
-        <meta
-          name="description"
-          content="Evaluate your relationship potential based on past relationship data."
-        />
-        <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
       </Head>
-
-      <Loading /> {/* Add the Loading component here */}
-
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-        {/* Core Content Container - Keeping original size constraints */}
-        <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto my-auto h-full min-h-screen text-center bg-gradient-to-b from-pink-100 to-purple-200 relative">
-          {/* Top Mini Nav */}
-          <div className="absolute top-4 right-4 flex space-x-3 text-sm text-gray-700">
-            <Link href="/about">
-              <span className="hover:text-pink-600 cursor-pointer">About</span>
-            </Link>
-            <Link href="/features">
-              <span className="hover:text-pink-600 cursor-pointer">Features</span>
-            </Link>
-          </div>
-
-          {/* Heart Icon with enhanced styling */}
-          <div className="bg-white rounded-full p-3 shadow-md mb-4">
-            <div className="text-5xl">❤️</div>
-          </div>
-
-          {/* Main Title with better styling */}
-          <h1 className="text-3xl font-bold text-pink-600 tracking-wide px-6 py-2 rounded-lg ">
-            GIRLFRIEND MANAGER
+      <div className="flex flex-col items-center justify-center bg-[#4A2B4D] w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
+        <div className="w-4/5 space-y-6">
+          {/* Main Title */}
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: "'Press Start 2P', cursive" }}>
+            Finding the right{" "}
+            <span className="inline-flex items-center">
+              p<span className="relative inline-block mx-1">
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="w-9 h-9 bg-[#FFD700] rounded-full -z-10 opacity-80"></span>
+                </span>
+                <span className="relative z-10 text-white">e</span>
+              </span>rson
+            </span>
           </h1>
-
-          {/* Slogan with improved typography */}
-          <p className="text-gray-700 italic mt-6 px-6 font-medium">
-            " The right person at the uncertain time "
+         
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-[#FFD700] italic">
+            In destiny's uncertain hour
           </p>
 
-          {/* Feature Mini Cards - Contained within the original width */}
-          <div className="flex flex-col space-y-3 mt-8 w-4/5">
-            <div className="bg-white bg-opacity-80 p-3 rounded-md shadow-sm flex items-center">
-              <span className="text-2xl mr-3">💌</span>
-              <span className="text-base text-gray-700">Track your relationships</span>
-            </div>
-            <div className="bg-white bg-opacity-80 p-3 rounded-md shadow-sm flex items-center">
-              <span className="text-2xl mr-3">📊</span>
-              <span className="text-base text-gray-700">Get personalized insights</span>
-            </div>
-          </div>
 
-          {/* Sign up / Log in Button with enhanced styling */}
-          <div className="mt-8">
-            <Link href="/login">
-              <button
-                className="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-8 rounded-full shadow-md transition-all duration-200"
-                href="/login"
-              >
-                Sign up / Log in
-              </button>
-            </Link>
-          </div>
+          {/* Get Started Button */}
+          <Link href="/signUp">
+            <button className="w-full bg-white text-[#4A2B4D] py-3 rounded-full text-lg font-bold cursor-pointer transform hover:scale-105 hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg">
+              Get Started
+            </button>
+          </Link>
 
-          {/* Mini testimonial that fits in the constrained width */}
-          <div className="mt-8 bg-opacity-70 p-4 rounded-md w-4/5 text-base">
-            <p className="text-gray-600 italic">"This app transformed my dating life!"</p>
-            <p className="text-gray-700 font-medium mt-1 text-sm">- Happy User</p>
-          </div>
+
+          {/* Additional Text */}
+          <p className="text-sm text-white/80 mt-4">
+            Already have an account? <Link href="/login" className="text-[#FFD700] hover:text-[#FFD700]/80">Log in</Link>
+          </p>
         </div>
       </div>
     </>
   );
 }
+
