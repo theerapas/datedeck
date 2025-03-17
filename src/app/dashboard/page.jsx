@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FaUserPlus, FaSearch } from 'react-icons/fa';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
-
+import Navbar2 from '../components/Navbar2';
 const Page = () => {
   const [data, setData] = useState([]);
 
@@ -27,12 +27,13 @@ const Page = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-[#572649] w-full max-w-md mx-auto min-h-screen text-left">
-
+    <div className="flex flex-col bg-[#572649] w-full max-w-md mx-auto min-h-screen text-left relative">
       <Loading />
 
+      <Navbar2 />
+      
       {/* header */}
-      <div className="w-full bg-transparent text-white py-4 flex justify-between items-center px-4 fixed top-0 z-10 max-w-md ">
+      <div className="w-full bg-transparent text-white py-4 flex justify-between items-center px-4 fixed top-0 z-40 max-w-md">
         <h1 className="text-xl font-bold">Girlfriend Deck</h1>
         <div className="flex space-x-4">
           <FaUserPlus size={24} />
