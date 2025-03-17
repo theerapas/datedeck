@@ -1,68 +1,98 @@
-import React from 'react';
-import { FaApple, FaGoogle, FaFacebook } from 'react-icons/fa';
-import Head from 'next/head';
-import Loading from '../components/Loading';
+import Link from "next/link";
+import Image from "next/image";
+import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
 
-const page = () => {
+export default function SignUpPage() {
   return (
-    <>
-      <Head>
-        <title>Sign up</title>
-        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-      </Head>
-
-      
-
-      <div className="flex flex-col items-center justify-center bg-gradient-to-b from-pink-100 to-purple-200 w-full max-w-md mx-auto my-auto h-full min-h-screen text-center">
-        {/* Sign up title */}
-        <h1 className="text-4xl font-bold text-gray-800 mb-15" style={{ fontFamily: "'Press Start 2P', cursive" }}>Sign up</h1>
-
-        {/* Sign up Form */}
-        <div className="w-4/5 text-left">
-          <label className="block text-sm font-medium text-gray-700">Username</label>
-          <input type="text" placeholder="Username" className="w-full px-4 py-2  rounded-md text-gray-800 mb-4 bg-white" />
-
-          <label className="block text-sm font-medium text-gray-700 bg-">Email</label>
-          <input type="email" placeholder="Email" className="w-full px-4 py-2  rounded-md text-gray-800 mb-4 bg-white" />
-
-          <label className="block text-sm font-medium text-gray-700">Password</label>
-          <input type="password" placeholder="Password" className="w-full px-4 py-2  rounded-md text-gray-800 mb-6 bg-white" />
-        </div>
-
-        {/* Sign up Button */}
-        <button className="w-4/5 bg-gray-800 text-white py-2 rounded-full text-lg font-bold mb-4">
+    <div className="min-h-screen flex items-center justify-center bg-white h-full">
+      <div className="w-full max-w-md p-8 bg-[#572649] h-full min-h-screen justify-center flex flex-col">
+        {/* Title */}
+        <h1 className="text-4xl font-medium text-white mb-8 text-center">
           Sign up
-        </button>
+        </h1>
 
-        {/* Terms of Service */}
-        <div className="w-4/5 text-left mb-4">
-          <input type="checkbox" className="mr-2" />
-          <label className="text-sm text-gray-700">agree all Term of Services</label>
+        {/* Sign Up Form */}
+        <form className="space-y-4 mb-6">
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              className="w-full px-4 py-3 rounded-lg bg-white"
+              required
+            />
+          </div>
+
+          <div>
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full px-4 py-3 rounded-lg bg-white"
+              required
+            />
+          </div>
+
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full px-4 py-3 rounded-lg bg-white"
+              required
+            />
+          </div>
+
+          {/* Terms of Service Checkbox */}
+          <div className="flex items-center space-x-2 text-white">
+            <input
+              type="checkbox"
+              id="terms"
+              className="w-4 h-4 rounded"
+              required
+            />
+            <label htmlFor="terms" className="text-sm">
+              agree all Term of Services
+            </label>
+          </div>
+
+          {/* Sign Up Button */}
+          <button
+            type="submit"
+            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
+          >
+            Sign up
+          </button>
+        </form>
+
+        {/* Social Login Buttons */}
+        <div className="space-y-4">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
+            <FaApple className="text-black" size={24} />
+            <span className="flex-grow text-center">Continue with Apple</span>
+          </button>
+
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
+            <FaGoogle className="text-red-500" size={24} />
+            <span className="flex-grow text-center">Continue with Google</span>
+          </button>
+
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
+            <FaFacebook className="text-blue-600" size={24} />
+            <span className="flex-grow text-center">
+              Continue with Facebook
+            </span>
+          </button>
         </div>
 
-        {/* Social Sign up Buttons */}
-        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-3 px-4">
-          <FaApple className="mr-2 text-black" size={30} />
-          <span className="flex-grow text-center">Continue with Apple</span>
-        </button>
-
-        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-3 px-4">
-          <FaGoogle className="mr-2 text-red-500" size={28}/>
-          <span className="flex-grow text-center">Continue with Google</span>
-        </button>
-
-        <button className="flex items-center justify-between w-4/5 bg-white text-gray-800 py-2 rounded-4xl shadow-md mb-6 px-4">
-          <FaFacebook className="mr-2 text-blue-600" size={30} />
-          <span className="flex-grow text-center">Continue with Facebook</span>
-        </button>
-
-        {/* Links */}
-        <p className="text-sm text-gray-700">
-          Already have an account? <span className="text-blue-500 cursor-pointer"><a href="/login">Log in</a></span>
-        </p>
+        {/* Login Link */}
+        <div className="text-center mt-6 text-white">
+          Already have an account?{" "}
+          <Link
+            href="/login"
+            className="text-white font-medium hover:underline"
+          >
+            Log in
+          </Link>
+        </div>
       </div>
-    </>
+    </div>
   );
-};
-
-export default page;
+}
