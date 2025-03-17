@@ -48,6 +48,7 @@ const Page = () => {
             type="email" 
             placeholder="Email" 
             className="w-full px-4 py-3 rounded-lg bg-white mb-4" 
+            onChange = {(e) => setEmail(e.target.value)}
           />
 
           <label className="block text-white mb-2 text-sm">password</label>
