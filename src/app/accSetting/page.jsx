@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { IoInformationCircle } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
+import { db } from "../../config/firebase";
 
 const page = () => {
   const router = useRouter()

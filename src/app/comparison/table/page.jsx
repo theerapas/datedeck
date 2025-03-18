@@ -7,14 +7,15 @@ import { FaCompass, FaArrowLeft } from 'react-icons/fa';
 const TablePage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [firstCharacter, setFirstCharacter] = useState(null);
+  const [secondCharacter, setSecondCharacter] = useState(null);
 
   // Sample data for characters and their scores
   const charactersData = {
     'nong_somsri': {
       id: 'nong_somsri',
       name: 'Nong Somsri',
-      image: '/images/nong_somsri.png',
+      image: 'https://stardewvalleywiki.com/mediawiki/images/a/ab/Penny.png',
       scores: {
         'Over all Rating': 75,
         'Communication Effectiveness': 8,
@@ -30,7 +31,7 @@ const TablePage = () => {
     'nong_somying': {
       id: 'nong_somying',
       name: 'Nong Somying',
-      image: '/images/nong_somying.png',
+      image: 'https://stardewvalleywiki.com/mediawiki/images/1/1b/Haley.png',
       scores: {
         'Over all Rating': 77,
         'Communication Effectiveness': 9,
@@ -46,7 +47,7 @@ const TablePage = () => {
     'p_to': {
       id: 'p_to',
       name: 'P To',
-      image: '/images/p_to.png',
+      image: 'https://stardewvalleywiki.com/mediawiki/images/8/8b/Shane.png',
       scores: {
         'Over all Rating': 82,
         'Communication Effectiveness': 9,
@@ -62,7 +63,7 @@ const TablePage = () => {
     'p_lengsab': {
       id: 'p_lengsab',
       name: 'P Lengsab',
-      image: '/images/p_lengsab.png',
+      image: 'https://stardewvalleywiki.com/mediawiki/images/8/88/Abigail.png',
       scores: {
         'Over all Rating': 78,
         'Communication Effectiveness': 7,
@@ -78,7 +79,7 @@ const TablePage = () => {
     'nong_oreo': {
       id: 'nong_oreo',
       name: 'Nong Oreo',
-      image: '/images/nong_oreo.png',
+      image: 'https://img.itch.zone/aW1nLzE1NzQ4ODIxLnBuZw==/original/ARVAWl.png',
       scores: {
         'Over all Rating': 76,
         'Communication Effectiveness': 8,
@@ -94,7 +95,7 @@ const TablePage = () => {
     'robin': {
       id: 'robin',
       name: 'Robin',
-      image: '/images/robin.png',
+      image: 'https://stardewvalleywiki.com/mediawiki/images/e/e6/Leah.png',
       scores: {
         'Over all Rating': 80,
         'Communication Effectiveness': 9,
@@ -110,7 +111,7 @@ const TablePage = () => {
     'nong_polo': {
       id: 'nong_polo',
       name: 'Nong Polo',
-      image: '/images/nong_polo.png',
+      image: 'https://preview.redd.it/portrait-creator-v0-2dfmrh32cv1d1.png?width=256&format=png&auto=webp&s=61ddaa90b97be5911435b4e8000111b38ba90720',
       scores: {
         'Over all Rating': 79,
         'Communication Effectiveness': 10,
@@ -125,26 +126,26 @@ const TablePage = () => {
     }
   };
 
-  const highestScores = {
-    'Over all Rating': 85,
-    'Communication Effectiveness': 10,
-    'Emotional Stability': 9,
-    'Affection Consistency': 8,
-    'Flexibility level': 10,
-    'Supportiveness': 9,
-    'Openness': 7,
-    'Conflict Resolution Skills': 6,
-    'Kindness && Generosity': 10
-  };
-
   useEffect(() => {
-    // Get the selected card ID from the URL query parameters
-    const cardId = searchParams.get('cardId');
-    if (cardId && charactersData[cardId]) {
-      setSelectedCharacter(charactersData[cardId]);
-    } else {
-      // Fallback to default character if no valid ID is provided
-      setSelectedCharacter(charactersData['nong_polo']);
+    // Get the selected card IDs from the URL query parameters
+    const firstCardId = searchParams.get('firstCardId');
+    const secondCardId = searchParams.get('secondCardId');
+    
+    if (firstCardId && charactersData[firstCardId]) {
+      setFirstCharacter(charactersData[firstCardId]);
+    }
+    
+    if (secondCardId && charactersData[secondCardId]) {
+      setSecondCharacter(charactersData[secondCardId]);
+    }
+    
+    // Fallback if any card is missing
+    if (!firstCardId || !charactersData[firstCardId]) {
+      setFirstCharacter(charactersData['nong_polo']);
+    }
+    
+    if (!secondCardId || !charactersData[secondCardId]) {
+      setSecondCharacter(charactersData['nong_somsri']);
     }
   }, [searchParams]);
 
@@ -152,7 +153,7 @@ const TablePage = () => {
     router.back();
   };
 
-  if (!selectedCharacter) {
+  if (!firstCharacter || !secondCharacter) {
     return <div className="flex flex-col bg-[#572649] w-full max-w-md mx-auto min-h-screen text-white justify-center items-center">
       <Navbar2 />
       <div className="mt-16">Loading...</div>
@@ -182,19 +183,34 @@ const TablePage = () => {
         
         {/* Content container with border */}
         <div className="w-full border-t border-white/30 mt-2 pt-4 flex flex-col items-center pb-8">
-          {/* Character name */}
-          <div className="text-center text-white mb-4 text-xl font-bold">
-            {selectedCharacter.name}
-          </div>
-          
-          {/* Character image */}
-          <div className="w-full flex justify-center mb-6">
-            <div className="bg-[#70365c] w-64 h-36 rounded-lg overflow-hidden">
-              <img 
-                src={selectedCharacter.image} 
-                alt={selectedCharacter.name} 
-                className="w-full h-full object-cover"
-              />
+          {/* Character images */}
+          <div className="w-full flex justify-center mb-6 space-x-4">
+            {/* First character */}
+            <div className="text-center">
+              <div className="bg-[#70365c] w-40 h-40 rounded-lg overflow-hidden mb-2">
+                <img 
+                  src={firstCharacter.image} 
+                  alt={firstCharacter.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="text-white text-lg font-medium">
+                {firstCharacter.name}
+              </div>
+            </div>
+            
+            {/* Second character */}
+            <div className="text-center">
+              <div className="bg-[#70365c] w-40 h-40 rounded-lg overflow-hidden mb-2">
+                <img 
+                  src={secondCharacter.image} 
+                  alt={secondCharacter.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="text-white text-lg font-medium">
+                {secondCharacter.name}
+              </div>
             </div>
           </div>
           
@@ -202,26 +218,41 @@ const TablePage = () => {
           <div className="w-full border border-white/30 rounded-lg overflow-hidden">
             {/* Table header */}
             <div className="grid grid-cols-3 bg-[#6c2f5c] text-white">
-              <div className="p-3 border-r border-white/30"></div>
-              <div className="p-3 text-center border-r border-white/30 font-medium">Highest</div>
-              <div className="p-3 text-center font-medium">{selectedCharacter.name}</div>
+              <div className="p-3 border-r border-white/30">Attributes</div>
+              <div className="p-3 text-center border-r border-white/30 font-medium">{firstCharacter.name}</div>
+              <div className="p-3 text-center font-medium">{secondCharacter.name}</div>
             </div>
             
             {/* Table rows */}
-            {Object.entries(highestScores).map(([category, highScore]) => {
-              const characterScore = selectedCharacter.scores[category];
-              const isHigher = characterScore >= highScore;
+            {Object.entries(firstCharacter.scores).map(([category, firstScore]) => {
+              const secondScore = secondCharacter.scores[category];
+              const winner = firstScore > secondScore ? 'first' : firstScore < secondScore ? 'second' : 'tie';
               
               return (
                 <div key={category} className="grid grid-cols-3 border-t border-white/30">
                   <div className="p-3 border-r border-white/30">{category}</div>
-                  <div className="p-3 text-center border-r border-white/30 font-bold">{highScore}</div>
-                  <div className={`p-3 text-center font-bold ${isHigher ? 'text-green-400' : 'text-red-400'}`}>
-                    {characterScore}
+                  <div className={`p-3 text-center border-r border-white/30 font-bold ${winner === 'first' ? 'text-green-400' : winner === 'second' ? 'text-red-400' : ''}`}>
+                    {firstScore}
+                  </div>
+                  <div className={`p-3 text-center font-bold ${winner === 'second' ? 'text-green-400' : winner === 'first' ? 'text-red-400' : ''}`}>
+                    {secondScore}
                   </div>
                 </div>
               );
             })}
+            
+            {/* Overall winner indication */}
+            <div className="grid grid-cols-3 border-t border-white/30 bg-[#6c2f5c]">
+              <div className="p-3 border-r border-white/30">Winner</div>
+              <div className="p-3 text-center border-r border-white/30 font-bold">
+                {firstCharacter.scores['Over all Rating'] > secondCharacter.scores['Over all Rating'] ? 
+                  '🏆' : ''}
+              </div>
+              <div className="p-3 text-center font-bold">
+                {secondCharacter.scores['Over all Rating'] > firstCharacter.scores['Over all Rating'] ? 
+                  '🏆' : ''}
+              </div>
+            </div>
           </div>
         </div>
       </div>
