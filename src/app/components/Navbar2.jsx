@@ -7,8 +7,8 @@ export default function Navbar() {
 
   const menuItems = [
     { href: '/dashboard', label: 'Dashboard' },
-    { href: '/girlfriend-deck', label: 'Girlfriend Deck' },
-    { href: '/comparison-mode', label: 'Comparison Mode' },
+    { href: '/girlfriendDeck', label: 'Girlfriend Deck' },
+    { href: '/comparison', label: 'Comparison Mode' },
     { href: '/profile', label: 'Profile' },
     { href: '/settings', label: 'Settings' },
   ];
@@ -16,19 +16,19 @@ export default function Navbar() {
   return (
     <>
       {/* Hamburger Menu Button */}
-      <div className="top-0 left-0 w-full max-w-md bg-[#4A2B4D] h-16 flex items-center px-4 z-60">
+      <div className="top-0 left-0 w-full max-w-md bg-[#572649] h-16 flex items-center px-6 z-60">
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-white hover:opacity-80 transition-opacity"
         >
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          {isMenuOpen ? <FaTimes size={32} /> : <FaBars size={32} />}
         </button>
       </div>
 
       {/* Sliding Navigation Menu */}
       <div 
-        className={` fixed top-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#4A2B4D] transform transition-transform duration-300 ease-in-out z-50 border-t border-[#5d375f] 
-          ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`fixed top-16 left-1/2 -translate-x-1/2 w-full max-w-md bg-[#572649] transform transition-transform duration-300 ease-in-out z-50 border-t border-[#5d375f] 
+          ${isMenuOpen ? 'translate-y-0' : 'hidden'}`}
       >
         <nav className="py-4">
           {menuItems.map((item) => (
@@ -43,8 +43,6 @@ export default function Navbar() {
           ))}
         </nav>
       </div>
-
-      {/* No Spacer Needed */}
     </>
   );
 }

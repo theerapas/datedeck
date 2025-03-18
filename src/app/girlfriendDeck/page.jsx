@@ -39,7 +39,7 @@ const Page = () => {
       <Navbar2 />
       
       {/* Header - Changed to absolute positioning that respects the parent container */}
-      <div className="w-full bg-transparent text-white py-4 flex justify-between items-center px-4 absolute top-16 z-40">
+      <div className="w-full bg-transparent text-white py-3.5 flex justify-between items-center px-12 absolute top-16 z-40">
         <h1 className="text-xl font-bold">Girlfriend Deck</h1>
         <div className="flex space-x-4">
           <FaUserPlus size={24} />
@@ -48,12 +48,15 @@ const Page = () => {
       </div>
       
       {/* Content - Adjusted margin to account for both navbars */}
-      <div className="w-full overflow-y-auto mt-32 pt-4 px-4 border-t border-white">
+      <div className="w-full overflow-y-auto mt-15 pt-4 px-4 border-t border-white">
         {testData.map((item, index) => (
           <Card key={index} name={item.name} quote={item.quote} rating={item.rating} date={item.date} />
         ))}
       </div>
+
+      
     </div>
+    
   );
 };
 

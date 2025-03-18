@@ -1,12 +1,21 @@
+"use client"; // Add this line at the top
+
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // Import useRouter
 import { FaApple, FaGoogle, FaFacebook } from "react-icons/fa";
-import { auth, googleProvider } from "../../config/firebase";
-import { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const router = useRouter(); // Initialize router
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Simulate form submission and redirect
+    setTimeout(() => {
+      router.push("/accSetting"); // Redirect to the success page
+    }, 500); // Delay for a better UX
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white h-full">
       <div className="w-full max-w-md p-8 bg-[#572649] h-full min-h-screen justify-center flex flex-col">
@@ -32,7 +41,6 @@ export default function SignUpPage() {
               placeholder="Email"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
-              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -42,28 +50,19 @@ export default function SignUpPage() {
               placeholder="Password"
               className="w-full px-4 py-3 rounded-lg bg-white"
               required
-              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
           {/* Terms of Service Checkbox */}
           <div className="flex items-center space-x-2 text-white">
-            <input
-              type="checkbox"
-              id="terms"
-              className="w-4 h-4 rounded"
-              required
-            />
-            <label htmlFor="terms" className="text-sm">
-              agree all Term of Services
-            </label>
+            <input type="checkbox" id="terms" className="w-4 h-4 rounded" required />
+            <label htmlFor="terms" className="text-sm">I agree to all Terms of Services</label>
           </div>
 
           {/* Sign Up Button */}
           <button
             type="submit"
-            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4 cursor-pointer"
-            onClick={signUp}
+            className="w-full bg-[#8B4B76] text-white py-3 rounded-full hover:bg-[#7a4267] transition-colors mt-4"
           >
             Sign up
           </button>
@@ -71,20 +70,17 @@ export default function SignUpPage() {
 
         {/* Social Login Buttons */}
         <div className="space-y-4">
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4 cursor-pointer">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
             <FaApple className="text-black" size={24} />
             <span className="flex-grow text-center">Continue with Apple</span>
           </button>
 
-          <button
-            className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4 cursor-pointer"
-            onClick={signUpwithGoogle}
-          >
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-4 px-4">
             <FaGoogle className="text-red-500" size={24} />
             <span className="flex-grow text-center">Continue with Google</span>
           </button>
 
-          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4 cursor-pointer">
+          <button className="flex items-center w-full bg-white text-gray-600 py-3 rounded-full shadow-md mb-8 px-4">
             <FaFacebook className="text-blue-600" size={24} />
             <span className="flex-grow text-center">Continue with Facebook</span>
           </button>
