@@ -11,7 +11,7 @@ const Page = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   
   const cards = [
-    { id: 'nong_somsri', name: 'Nong_somsri', image: '/images/nong_somsri.png' },
+    { id: 'nong_somsri', name: 'Nong_somsri', image: '/assets/nong_Somsri.png' },
     { id: 'nong_somying', name: 'Nong_somying', image: '/images/nong_somying.png' },
     { id: 'p_to', name: 'P_To', image: '/images/p_to.png' },
     { id: 'p_lengsab', name: 'P_lengsab', image: '/images/p_lengsab.png' },
