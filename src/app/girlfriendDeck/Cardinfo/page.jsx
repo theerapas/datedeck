@@ -10,6 +10,7 @@ const CardInfo = () => {
   const cardId = searchParams.get('id');
   const [card, setCard] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     // In a real app, fetch the specific card data using cardId
@@ -60,7 +61,17 @@ const CardInfo = () => {
   }, [cardId]);
 
   const handleGoBack = () => {
-    router.back();
+    router.push('/girlfriendDeck');
+  };
+
+  const handleEdit = () => {
+    router.push(`/girlfriendDeck/editCard?id=${cardId}`);
+  };
+
+  const handleDelete = () => {
+    // Here you would implement the actual delete logic
+    // For now, we'll just navigate back to the main page
+    router.push('/girlfriendDeck');
   };
 
   if (loading) {
@@ -74,9 +85,9 @@ const CardInfo = () => {
   // Function to render the radar chart for stats
   const renderRadarChart = () => {
     const stats = card.stats;
-    const centerX = 150;
-    const centerY = 150;
-    const radius = 80;
+    const centerX = 200;
+    const centerY = 200;
+    const radius = 120;
     
     // Calculate points for each stat on the radar
     const statPoints = [
@@ -100,7 +111,7 @@ const CardInfo = () => {
     
     return (
       <div className="relative w-full">
-        <svg width="300" height="300" viewBox="0 0 300 300" className="mx-auto">
+        <svg width="400" height="400" viewBox="0 0 400 400" className="mx-auto">
           {/* Background circles */}
           <circle cx={centerX} cy={centerY} r={radius * 0.3} fill="none" stroke="#ffffff33" strokeWidth="1" />
           <circle cx={centerX} cy={centerY} r={radius * 0.6} fill="none" stroke="#ffffff33" strokeWidth="1" />
@@ -136,7 +147,7 @@ const CardInfo = () => {
                 key={`point-${index}`}
                 cx={x}
                 cy={y}
-                r="4"
+                r="5"
                 fill="white"
               />
             );
@@ -155,32 +166,9 @@ const CardInfo = () => {
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="white"
-                fontSize="12"
+                fontSize="14"
               >
                 {stat.key.charAt(0).toUpperCase() + stat.key.slice(1)}
-              </text>
-            );
-          })}
-          
-          {/* Stat values */}
-          {statPoints.map((stat, index) => {
-            const valueDistance = (stat.value / 10) * radius;
-            const x = centerX + valueDistance * Math.cos(stat.angle * Math.PI / 180);
-            const y = centerY + valueDistance * Math.sin(stat.angle * Math.PI / 180);
-            // Position the value text slightly offset from the point
-            const textX = x + 15 * Math.cos(stat.angle * Math.PI / 180);
-            const textY = y + 15 * Math.sin(stat.angle * Math.PI / 180);
-            return (
-              <text 
-                key={`value-${index}`}
-                x={textX}
-                y={textY}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="white"
-                fontSize="10"
-              >
-                {stat.value}
               </text>
             );
           })}
@@ -191,9 +179,38 @@ const CardInfo = () => {
 
   return (
     <div className="flex flex-col bg-[#572649] w-full max-w-md mx-auto min-h-screen text-white">
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4 animate-fadeIn">
+          <div className="bg-[#572649] rounded-lg p-6 w-full max-w-sm border border-white/20 transform transition-all duration-300 animate-scaleIn">
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mb-4">
+                <FaTrash size={24} className="text-red-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Are you sure?</h3>
+              <p className="text-center text-white/70 mb-6">This card will not receive back.</p>
+              <div className="flex space-x-3 w-full">
+                <button
+                  onClick={() => setShowDeleteModal(false)}
+                  className="flex-1 py-3 px-4 rounded-lg bg-gray-600 hover:bg-gray-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="flex-1 py-3 px-4 rounded-lg bg-red-500 hover:bg-red-600 transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="w-full bg-[#572649] py-4 px-4 flex justify-between items-center">
-        <button onClick={handleGoBack} className="text-white">
+        <button onClick={handleGoBack} className="text-white hover:scale-110 transition-transform duration-200 cursor-pointer">
           <FaArrowLeft size={24} />
         </button>
         <div className="flex items-center">
@@ -201,7 +218,7 @@ const CardInfo = () => {
           <h1 className="text-lg font-medium">{card.name}</h1>
           <span className="text-xs ml-2 opacity-70">{card.date}</span>
         </div>
-        <button className="text-white">
+        <button onClick={handleEdit} className="text-white hover:scale-110 transition-transform duration-200 cursor-pointer">
           <FaEdit size={24} />
         </button>
       </div>
@@ -252,7 +269,7 @@ const CardInfo = () => {
         </div>
         
         {/* Description */}
-        <div className="mb-6 text-sm opacity-80">
+        <div className="mb-6 text-sm bg-[#2D1425] p-4 rounded-lg border border-white/10">
           {card.description}
         </div>
         
@@ -274,7 +291,7 @@ const CardInfo = () => {
         <div className="flex justify-center items-center mb-4">
           <div className="text-center">
             <p className="text-sm opacity-70">Rating :</p>
-            <p className="text-2xl font-bold">{card.rating}</p>
+            <p className="text-4xl font-bold">{card.rating}</p>
           </div>
         </div>
         
@@ -283,7 +300,10 @@ const CardInfo = () => {
         
         {/* Delete button */}
         <div className="flex justify-end my-4">
-          <button className="bg-red-500 p-2 rounded-full">
+          <button 
+            onClick={() => setShowDeleteModal(true)}
+            className="bg-red-500 p-2 rounded-full hover:bg-red-600 transition-colors transform hover:scale-105 active:scale-95 duration-200"
+          >
             <FaTrash size={18} />
           </button>
         </div>

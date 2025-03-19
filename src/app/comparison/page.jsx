@@ -52,7 +52,7 @@ const Page = () => {
       <Navbar2 />
       
       {/* Main content area with proper padding */}
-      <div className="w-full bg-[#572649] text-white py-4 flex flex-col justify-center items-center px-4 pt-16">
+      <div className="w-full bg-[#572649] text-white py-4 flex flex-col justify-center items-center px-4 pt-5">
         {/* Compass icon and title */}
         <FaCompass className="text-4xl mb-2" />
         <h1 className="text-3xl">Comparison Mode</h1>

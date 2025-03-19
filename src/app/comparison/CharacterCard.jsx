@@ -2,8 +2,19 @@
 import React from 'react';
 
 const CharacterCard = ({ card, onClick, isSelected, isDisabled }) => {
-  // Default score value - you can pass this in with the card object
-  const score = card.score || Math.floor(Math.random() * 100); // Fallback random score if not provided
+  // Character data with scores from table page
+  const charactersData = {
+    'nong_somsri': { score: 75 },
+    'nong_somying': { score: 77 },
+    'p_to': { score: 82 },
+    'p_lengsab': { score: 78 },
+    'nong_oreo': { score: 76 },
+    'robin': { score: 80 },
+    'nong_polo': { score: 79 }
+  };
+  
+  // Use the overall rating from the charactersData instead of random
+  const score = charactersData[card.id]?.score || 75; // Fallback to 75 if not found
 
   return (
     <div 
@@ -23,7 +34,7 @@ const CharacterCard = ({ card, onClick, isSelected, isDisabled }) => {
             </div>
             
             {/* Score section that stays within the pink div */}
-            <div className="bg-[pink-400] bg-opacity-90 py-1 px-2 text-center">
+            <div className="bg-[pink-400] bg-opacity-90 pt-4 px-2 text-center">
               <p className="text-white font-bold text-sm">Rating {score}</p>
             </div>
           </div>

@@ -136,13 +136,13 @@ const page = () => {
           <div className="flex justify-between mt-8">
             <button
               onClick={handleSkip}
-              className="px-6 py-2 bg-white text-[#572649] rounded-lg hover:bg-gray-200 transition-colors"
+              className="px-6 py-2 bg-white text-[#572649] rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
             >
               Skip
             </button>
             <button
               onClick={handleNext}
-              className="px-6 py-2 bg-white text-[#572649] rounded-lg hover:bg-gray-200 transition-colors"
+              className="px-6 py-2 bg-white text-[#572649] rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
             >
               Next
             </button>
